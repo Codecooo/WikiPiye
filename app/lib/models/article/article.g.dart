@@ -18,6 +18,7 @@ _Article _$ArticleFromJson(Map<String, dynamic> json) => _Article(
     _$EditProtectionLevelEnumMap,
     json['editProtectionLevel'],
   ),
+  infoboxData: json['infoboxData'] as Map<String, dynamic>,
   sections: (json['sections'] as List<dynamic>)
       .map((e) => ArticleSection.fromJson(e as Map<String, dynamic>))
       .toList(),
@@ -34,6 +35,7 @@ Map<String, dynamic> _$ArticleToJson(_Article instance) => <String, dynamic>{
   'category': instance.category,
   'editProtectionLevel':
       _$EditProtectionLevelEnumMap[instance.editProtectionLevel]!,
+  'infoboxData': instance.infoboxData,
   'sections': instance.sections,
   'createdAt': instance.createdAt.toIso8601String(),
   'updatedAt': instance.updatedAt.toIso8601String(),

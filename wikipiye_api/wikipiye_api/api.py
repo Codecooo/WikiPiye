@@ -1,10 +1,9 @@
 from ninja import NinjaAPI
-from ninja_jwt.authentication import JWTAuth
 from ninja_jwt.routers.obtain import obtain_pair_router
 from auth.api import router as auth_router
+from articles.api import router as articles_router
 
-auth = JWTAuth()
-api = NinjaAPI(title="WikiPiye API", version="1.0", auth=auth)
+api = NinjaAPI(title="WikiPiye API", version="1.0")
 
 api.add_router(
     "/auth/",
@@ -16,4 +15,10 @@ api.add_router(
     "/token/",
     obtain_pair_router,
     tags=["Authentication"]
+)
+
+api.add_router(
+    "/articles/",
+    router=articles_router,
+    tags=["Articles"]
 )

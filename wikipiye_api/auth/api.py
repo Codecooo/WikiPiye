@@ -3,7 +3,7 @@ from users.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
-
+from ninja_jwt.authentication import JWTAuth
 from ninja import Router
 from ninja.errors import HttpError
 from ninja_jwt.tokens import RefreshToken
@@ -12,6 +12,7 @@ from .schema import LoginOut, RegisterIn, LoginIn, RegisterOut, UserOut
 
 
 router = Router()
+auth = JWTAuth()
 
 @router.post("/register", response={201: RegisterOut}, auth=None)
 def register(request, payload: RegisterIn):
@@ -103,7 +104,7 @@ def login_user(request, payload: LoginIn):
         )
     )
 
-@router.get("/me", response=UserOut)
+@router.get("/me", response=UserOut, auth=auth)
 def current_user(request):
     # Mengembalikan user yang sedang login
     return request.auth

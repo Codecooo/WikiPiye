@@ -12,6 +12,7 @@ abstract class Article with _$Article {
     required String bannerImageUrl,
     required List<String> category,
     required EditProtectionLevel editProtectionLevel,
+    required Map<String, dynamic> infoboxData, // Data infobox wiki dalam bentuk key-value
     
     // Konten disimpan sebagai daftar Section
     required List<ArticleSection> sections,

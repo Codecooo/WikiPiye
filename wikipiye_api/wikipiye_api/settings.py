@@ -32,11 +32,13 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.postgres',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'articles',
 ]
 
 AUTH_USER_MODEL = "users.User"
