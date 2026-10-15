@@ -1,5 +1,5 @@
 from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
+from users.models import User
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
@@ -22,6 +22,7 @@ def register(request, payload: RegisterIn):
         email=payload.email,
         first_name=payload.first_name,
         last_name=payload.last_name,
+        user_role=getattr(payload, 'user_role', 'GUEST'),
     )
 
     # Memvalidasi password menggunakan validator Django

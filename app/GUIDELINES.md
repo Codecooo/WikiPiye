@@ -54,6 +54,9 @@ lib/
 
 ## 4. Standar Pengodean & Aturan Pemeliharaan Kode
 
+### Konfigurasi API
+Seluruh konfigurasi API telah didefinisikan didalam `ApiConfig` class di folder utils. Ini termasuk base url API dan konfigurasi API lainnya. MOHON untuk merujuk kepada konfigurasi ini untuk semua hal terkait konfigurasi API jangan di hardcode.
+
 ### Aturan A: Komponentisasi Wajib (Dilarang Layar Monolitik)
 
 Jangan pernah menulis struktur widget (*widget tree*) yang besar dan monolitik dalam satu berkas layar.

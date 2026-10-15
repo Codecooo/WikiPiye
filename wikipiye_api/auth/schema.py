@@ -7,6 +7,7 @@ class RegisterIn(Schema):
     password: str
     first_name: str = ""
     last_name: str = ""
+    user_role: str
 
 
 class LoginIn(Schema):
