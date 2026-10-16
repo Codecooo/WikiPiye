@@ -6,7 +6,7 @@ from wikipiye_api.schemas import CamelSchema
 
 
 class ReadingListIn(CamelSchema):
-    title: str = Field(..., min_length=1, max_length=150)
+    title: str = Field(..., min_length=1, max_length=150, pattern=r".*\S.*")
     description: str | None = None
 
 
