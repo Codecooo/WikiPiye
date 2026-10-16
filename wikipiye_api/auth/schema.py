@@ -7,7 +7,7 @@ class RegisterIn(Schema):
     password: str
     first_name: str = ""
     last_name: str = ""
-    user_role: str
+    role: str
 
 
 class LoginIn(Schema):
@@ -30,4 +30,4 @@ class UserOut(Schema):
     first_name: str
     last_name: str
     is_staff: bool
-    user_role: str
+    role: str

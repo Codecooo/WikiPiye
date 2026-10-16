@@ -23,7 +23,7 @@ def register(request, payload: RegisterIn):
         email=payload.email,
         first_name=payload.first_name,
         last_name=payload.last_name,
-        user_role=getattr(payload, 'user_role', 'GUEST'),
+        role=getattr(payload, 'role', 'GUEST'),
     )
 
     # Memvalidasi password menggunakan validator Django
@@ -55,6 +55,7 @@ def register(request, payload: RegisterIn):
                 password=payload.password,
                 first_name=payload.first_name,
                 last_name=payload.last_name,
+                role = getattr(payload, 'role', 'GUEST')
             )
     except IntegrityError:
         # Menangani kemungkinan duplicate data
@@ -100,11 +101,6 @@ def login_user(request, payload: LoginIn):
             first_name=user.first_name,
             last_name=user.last_name,
             is_staff=user.is_staff,
-            user_role=user.user_role
+            role=user.role
         )
     )
-
-@router.get("/me", response=UserOut, auth=auth)
-def current_user(request):
-    # Mengembalikan user yang sedang login
-    return request.auth
