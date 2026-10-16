@@ -5,14 +5,13 @@ from django.db.models.functions import Lower
 
 
 class UserRole(models.TextChoices):
-    ADMIN = "ADMIN"
-    VIEWER = "VIEWER"
-    EDITOR = "EDITOR"
-    GUEST = "GUEST"
-
+    ADMIN = 'admin',
+    VIEWER = 'viewer',
+    EDITOR = 'editor',
+    GUEST = 'guest'
 
 class User(AbstractUser):
-    user_role = models.CharField(
+    role = models.CharField(
         max_length=20,
         choices=UserRole.choices,
         default=UserRole.GUEST,
