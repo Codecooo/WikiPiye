@@ -12,7 +12,7 @@ class UserRole(models.TextChoices):
 
 
 class User(AbstractUser):
-    user_role = models.CharField(
+    role = models.CharField(
         max_length=20,
         choices=UserRole.choices,
         default=UserRole.GUEST,
