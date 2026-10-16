@@ -25,7 +25,7 @@ class UserOut(CamelSchema):
 
     @staticmethod
     def resolve_role(obj):
-        return obj.user_role.lower()
+        return obj.role.lower()
 
     @staticmethod
     def resolve_created_at(obj):
