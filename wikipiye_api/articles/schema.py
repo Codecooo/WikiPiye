@@ -7,25 +7,19 @@ class ArticleSectionOut(ModelSchema):
         model = ArticleSection
         fields = ["id", "heading", "level", "content_delta"]
 
-class ArticleOut(ModelSchema):
+class DetailArticleOut(ModelSchema):
     sections: List[ArticleSectionOut]
 
     class Meta:
         model = Article
-        fields = [
-            "id",
-            "title",
-            "summary",
-            "banner_image_url",
-            "category",
-            "view_count",
-            "edit_protection_level",
-            "infobox_data",
-            "created_at",
-            "updated_at",
-            "is_featured",
-            "is_in_the_news",
-        ]
+        fields = "__all__"
+
+
+class ArticleOut(ModelSchema):
+    class Meta:
+        model = Article
+        fields =  "__all__"
+
 
 class ArticleSectionIn(Schema):
     heading: str
