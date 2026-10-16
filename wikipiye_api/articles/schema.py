@@ -27,6 +27,11 @@ class ArticleOut(ModelSchema):
             "is_in_the_news",
         ]
 
+class ArticleSectionIn(Schema):
+    heading: str
+    level: int = 1
+    content_delta: dict
+
 class ArticleIn(Schema):
     title: str
     summary: str
@@ -36,11 +41,6 @@ class ArticleIn(Schema):
     is_featured: Optional[bool] = None
     is_in_the_news: Optional[bool] = None
     sections: Optional[List[ArticleSectionIn]] = None
-
-class ArticleSectionIn(Schema):
-    heading: str
-    level: int = 1
-    content_delta: dict
 
 class ArticleCreateIn(Schema):
     title: str
