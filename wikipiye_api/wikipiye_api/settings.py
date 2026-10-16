@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'articles',
     'reading_lists',
     'activity',
+    'feed',
 ]
 
 AUTH_USER_MODEL = "users.User"

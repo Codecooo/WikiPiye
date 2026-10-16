@@ -5,6 +5,7 @@ from articles.api import router as articles_router
 from users.api import router as users_router
 from reading_lists.api import router as reading_lists_router
 from activity.api import router as activity_router
+from feed.api import router as feed_router
 
 api = NinjaAPI(title="WikiPiye API", version="1.0")
 
@@ -42,4 +43,10 @@ api.add_router(
     "/activity/",
     router=activity_router,
     tags=["Activity"]
+)
+
+api.add_router(
+    "/for-you/",
+    router=feed_router,
+    tags=["For You"]
 )
