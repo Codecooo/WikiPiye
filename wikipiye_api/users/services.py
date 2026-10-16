@@ -1,3 +1,4 @@
+from django.db import IntegrityError, transaction
 from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from ninja.errors import HttpError
@@ -25,7 +26,12 @@ def update_profile(user: User, payload) -> User:
         fields.append("email")
 
     if fields:
-        user.save(update_fields=fields)
+        try:
+            with transaction.atomic():
+                user.save(update_fields=fields)
+        except IntegrityError:
+            raise HttpError(400, "Email sudah digunakan.")
+
     return user
 
 
