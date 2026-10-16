@@ -16,7 +16,8 @@ abstract class Article with _$Article {
     
     // Konten disimpan sebagai daftar Section
     required List<ArticleSection> sections,
-    
+    required bool isFeatured,
+    required bool isInTheNews,
     required DateTime createdAt,
     required DateTime updatedAt,
     int? viewCount,

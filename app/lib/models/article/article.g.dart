@@ -22,6 +22,8 @@ _Article _$ArticleFromJson(Map<String, dynamic> json) => _Article(
   sections: (json['sections'] as List<dynamic>)
       .map((e) => ArticleSection.fromJson(e as Map<String, dynamic>))
       .toList(),
+  isFeatured: json['isFeatured'] as bool,
+  isInTheNews: json['isInTheNews'] as bool,
   createdAt: DateTime.parse(json['createdAt'] as String),
   updatedAt: DateTime.parse(json['updatedAt'] as String),
   viewCount: (json['viewCount'] as num?)?.toInt(),
@@ -37,6 +39,8 @@ Map<String, dynamic> _$ArticleToJson(_Article instance) => <String, dynamic>{
       _$EditProtectionLevelEnumMap[instance.editProtectionLevel]!,
   'infoboxData': instance.infoboxData,
   'sections': instance.sections,
+  'isFeatured': instance.isFeatured,
+  'isInTheNews': instance.isInTheNews,
   'createdAt': instance.createdAt.toIso8601String(),
   'updatedAt': instance.updatedAt.toIso8601String(),
   'viewCount': instance.viewCount,

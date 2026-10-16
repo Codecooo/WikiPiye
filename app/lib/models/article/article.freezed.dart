@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$Article {
 
- String get id; String get title; String get summary; String get bannerImageUrl; List<String> get category; EditProtectionLevel get editProtectionLevel; Map<String, dynamic> get infoboxData; List<ArticleSection> get sections; DateTime get createdAt; DateTime get updatedAt; int? get viewCount;
+ String get id; String get title; String get summary; String get bannerImageUrl; List<String> get category; EditProtectionLevel get editProtectionLevel; Map<String, dynamic> get infoboxData; List<ArticleSection> get sections; bool get isFeatured; bool get isInTheNews; DateTime get createdAt; DateTime get updatedAt; int? get viewCount;
 /// Create a copy of Article
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,20 +30,20 @@ $ArticleCopyWith<Article> get copyWith => _$ArticleCopyWithImpl<Article>(this as
 @override
 bool operator ==(Object other) {
   final _this = this as Article;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is Article&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.summary, _this.summary) || other.summary == _this.summary)&&(identical(other.bannerImageUrl, _this.bannerImageUrl) || other.bannerImageUrl == _this.bannerImageUrl)&&const DeepCollectionEquality().equals(other.category, _this.category)&&(identical(other.editProtectionLevel, _this.editProtectionLevel) || other.editProtectionLevel == _this.editProtectionLevel)&&const DeepCollectionEquality().equals(other.infoboxData, _this.infoboxData)&&const DeepCollectionEquality().equals(other.sections, _this.sections)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt)&&(identical(other.viewCount, _this.viewCount) || other.viewCount == _this.viewCount));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Article&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.summary, _this.summary) || other.summary == _this.summary)&&(identical(other.bannerImageUrl, _this.bannerImageUrl) || other.bannerImageUrl == _this.bannerImageUrl)&&const DeepCollectionEquality().equals(other.category, _this.category)&&(identical(other.editProtectionLevel, _this.editProtectionLevel) || other.editProtectionLevel == _this.editProtectionLevel)&&const DeepCollectionEquality().equals(other.infoboxData, _this.infoboxData)&&const DeepCollectionEquality().equals(other.sections, _this.sections)&&(identical(other.isFeatured, _this.isFeatured) || other.isFeatured == _this.isFeatured)&&(identical(other.isInTheNews, _this.isInTheNews) || other.isInTheNews == _this.isInTheNews)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt)&&(identical(other.viewCount, _this.viewCount) || other.viewCount == _this.viewCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as Article;
-  return Object.hash(runtimeType,_this.id,_this.title,_this.summary,_this.bannerImageUrl,const DeepCollectionEquality().hash(_this.category),_this.editProtectionLevel,const DeepCollectionEquality().hash(_this.infoboxData),const DeepCollectionEquality().hash(_this.sections),_this.createdAt,_this.updatedAt,_this.viewCount);
+  return Object.hash(runtimeType,_this.id,_this.title,_this.summary,_this.bannerImageUrl,const DeepCollectionEquality().hash(_this.category),_this.editProtectionLevel,const DeepCollectionEquality().hash(_this.infoboxData),const DeepCollectionEquality().hash(_this.sections),_this.isFeatured,_this.isInTheNews,_this.createdAt,_this.updatedAt,_this.viewCount);
 }
 
 @override
 String toString() {
   final _this = this as Article;
-  return 'Article(id: ${_this.id}, title: ${_this.title}, summary: ${_this.summary}, bannerImageUrl: ${_this.bannerImageUrl}, category: ${_this.category}, editProtectionLevel: ${_this.editProtectionLevel}, infoboxData: ${_this.infoboxData}, sections: ${_this.sections}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt}, viewCount: ${_this.viewCount})';
+  return 'Article(id: ${_this.id}, title: ${_this.title}, summary: ${_this.summary}, bannerImageUrl: ${_this.bannerImageUrl}, category: ${_this.category}, editProtectionLevel: ${_this.editProtectionLevel}, infoboxData: ${_this.infoboxData}, sections: ${_this.sections}, isFeatured: ${_this.isFeatured}, isInTheNews: ${_this.isInTheNews}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt}, viewCount: ${_this.viewCount})';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $ArticleCopyWith<$Res>  {
   factory $ArticleCopyWith(Article value, $Res Function(Article) _then) = _$ArticleCopyWithImpl;
 @useResult
 $Res call({
- String id, String title, String summary, String bannerImageUrl, List<String> category, EditProtectionLevel editProtectionLevel, Map<String, dynamic> infoboxData, List<ArticleSection> sections, DateTime createdAt, DateTime updatedAt, int? viewCount
+ String id, String title, String summary, String bannerImageUrl, List<String> category, EditProtectionLevel editProtectionLevel, Map<String, dynamic> infoboxData, List<ArticleSection> sections, bool isFeatured, bool isInTheNews, DateTime createdAt, DateTime updatedAt, int? viewCount
 });
 
 
@@ -71,7 +71,7 @@ class _$ArticleCopyWithImpl<$Res>
 
 /// Create a copy of Article
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? summary = null,Object? bannerImageUrl = null,Object? category = null,Object? editProtectionLevel = null,Object? infoboxData = null,Object? sections = null,Object? createdAt = null,Object? updatedAt = null,Object? viewCount = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? summary = null,Object? bannerImageUrl = null,Object? category = null,Object? editProtectionLevel = null,Object? infoboxData = null,Object? sections = null,Object? isFeatured = null,Object? isInTheNews = null,Object? createdAt = null,Object? updatedAt = null,Object? viewCount = freezed,}) {
   return _then(Article(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -81,7 +81,9 @@ as String,category: null == category ? _self.category : category // ignore: cast
 as List<String>,editProtectionLevel: null == editProtectionLevel ? _self.editProtectionLevel : editProtectionLevel // ignore: cast_nullable_to_non_nullable
 as EditProtectionLevel,infoboxData: null == infoboxData ? _self.infoboxData : infoboxData // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,sections: null == sections ? _self.sections : sections // ignore: cast_nullable_to_non_nullable
-as List<ArticleSection>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as List<ArticleSection>,isFeatured: null == isFeatured ? _self.isFeatured : isFeatured // ignore: cast_nullable_to_non_nullable
+as bool,isInTheNews: null == isInTheNews ? _self.isInTheNews : isInTheNews // ignore: cast_nullable_to_non_nullable
+as bool,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,viewCount: freezed == viewCount ? _self.viewCount : viewCount // ignore: cast_nullable_to_non_nullable
 as int?,
@@ -169,10 +171,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String summary,  String bannerImageUrl,  List<String> category,  EditProtectionLevel editProtectionLevel,  Map<String, dynamic> infoboxData,  List<ArticleSection> sections,  DateTime createdAt,  DateTime updatedAt,  int? viewCount)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String summary,  String bannerImageUrl,  List<String> category,  EditProtectionLevel editProtectionLevel,  Map<String, dynamic> infoboxData,  List<ArticleSection> sections,  bool isFeatured,  bool isInTheNews,  DateTime createdAt,  DateTime updatedAt,  int? viewCount)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Article() when $default != null:
-return $default(_that.id,_that.title,_that.summary,_that.bannerImageUrl,_that.category,_that.editProtectionLevel,_that.infoboxData,_that.sections,_that.createdAt,_that.updatedAt,_that.viewCount);case _:
+return $default(_that.id,_that.title,_that.summary,_that.bannerImageUrl,_that.category,_that.editProtectionLevel,_that.infoboxData,_that.sections,_that.isFeatured,_that.isInTheNews,_that.createdAt,_that.updatedAt,_that.viewCount);case _:
   return orElse();
 
 }
@@ -190,10 +192,10 @@ return $default(_that.id,_that.title,_that.summary,_that.bannerImageUrl,_that.ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String summary,  String bannerImageUrl,  List<String> category,  EditProtectionLevel editProtectionLevel,  Map<String, dynamic> infoboxData,  List<ArticleSection> sections,  DateTime createdAt,  DateTime updatedAt,  int? viewCount)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String summary,  String bannerImageUrl,  List<String> category,  EditProtectionLevel editProtectionLevel,  Map<String, dynamic> infoboxData,  List<ArticleSection> sections,  bool isFeatured,  bool isInTheNews,  DateTime createdAt,  DateTime updatedAt,  int? viewCount)  $default,) {final _that = this;
 switch (_that) {
 case _Article():
-return $default(_that.id,_that.title,_that.summary,_that.bannerImageUrl,_that.category,_that.editProtectionLevel,_that.infoboxData,_that.sections,_that.createdAt,_that.updatedAt,_that.viewCount);case _:
+return $default(_that.id,_that.title,_that.summary,_that.bannerImageUrl,_that.category,_that.editProtectionLevel,_that.infoboxData,_that.sections,_that.isFeatured,_that.isInTheNews,_that.createdAt,_that.updatedAt,_that.viewCount);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -210,10 +212,10 @@ return $default(_that.id,_that.title,_that.summary,_that.bannerImageUrl,_that.ca
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String summary,  String bannerImageUrl,  List<String> category,  EditProtectionLevel editProtectionLevel,  Map<String, dynamic> infoboxData,  List<ArticleSection> sections,  DateTime createdAt,  DateTime updatedAt,  int? viewCount)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String summary,  String bannerImageUrl,  List<String> category,  EditProtectionLevel editProtectionLevel,  Map<String, dynamic> infoboxData,  List<ArticleSection> sections,  bool isFeatured,  bool isInTheNews,  DateTime createdAt,  DateTime updatedAt,  int? viewCount)?  $default,) {final _that = this;
 switch (_that) {
 case _Article() when $default != null:
-return $default(_that.id,_that.title,_that.summary,_that.bannerImageUrl,_that.category,_that.editProtectionLevel,_that.infoboxData,_that.sections,_that.createdAt,_that.updatedAt,_that.viewCount);case _:
+return $default(_that.id,_that.title,_that.summary,_that.bannerImageUrl,_that.category,_that.editProtectionLevel,_that.infoboxData,_that.sections,_that.isFeatured,_that.isInTheNews,_that.createdAt,_that.updatedAt,_that.viewCount);case _:
   return null;
 
 }
@@ -225,7 +227,7 @@ return $default(_that.id,_that.title,_that.summary,_that.bannerImageUrl,_that.ca
 @JsonSerializable()
 
 class _Article implements Article {
-  const _Article({required this.id, required this.title, required this.summary, required this.bannerImageUrl, required  List<String> category, required this.editProtectionLevel, required  Map<String, dynamic> infoboxData, required  List<ArticleSection> sections, required this.createdAt, required this.updatedAt, this.viewCount}): _category = category,_infoboxData = infoboxData,_sections = sections;
+  const _Article({required this.id, required this.title, required this.summary, required this.bannerImageUrl, required  List<String> category, required this.editProtectionLevel, required  Map<String, dynamic> infoboxData, required  List<ArticleSection> sections, required this.isFeatured, required this.isInTheNews, required this.createdAt, required this.updatedAt, this.viewCount}): _category = category,_infoboxData = infoboxData,_sections = sections;
   factory _Article.fromJson(Map<String, dynamic> json) => _$ArticleFromJson(json);
 
 @override final  String id;
@@ -254,6 +256,8 @@ class _Article implements Article {
   return EqualUnmodifiableListView(_sections);
 }
 
+@override final  bool isFeatured;
+@override final  bool isInTheNews;
 @override final  DateTime createdAt;
 @override final  DateTime updatedAt;
 @override final  int? viewCount;
@@ -271,18 +275,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Article&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.bannerImageUrl, bannerImageUrl) || other.bannerImageUrl == bannerImageUrl)&&const DeepCollectionEquality().equals(other.category, _category)&&(identical(other.editProtectionLevel, editProtectionLevel) || other.editProtectionLevel == editProtectionLevel)&&const DeepCollectionEquality().equals(other.infoboxData, _infoboxData)&&const DeepCollectionEquality().equals(other.sections, _sections)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.viewCount, viewCount) || other.viewCount == viewCount));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _Article&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.summary, summary) || other.summary == summary)&&(identical(other.bannerImageUrl, bannerImageUrl) || other.bannerImageUrl == bannerImageUrl)&&const DeepCollectionEquality().equals(other.category, _category)&&(identical(other.editProtectionLevel, editProtectionLevel) || other.editProtectionLevel == editProtectionLevel)&&const DeepCollectionEquality().equals(other.infoboxData, _infoboxData)&&const DeepCollectionEquality().equals(other.sections, _sections)&&(identical(other.isFeatured, isFeatured) || other.isFeatured == isFeatured)&&(identical(other.isInTheNews, isInTheNews) || other.isInTheNews == isInTheNews)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt)&&(identical(other.viewCount, viewCount) || other.viewCount == viewCount));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,id,title,summary,bannerImageUrl,const DeepCollectionEquality().hash(_category),editProtectionLevel,const DeepCollectionEquality().hash(_infoboxData),const DeepCollectionEquality().hash(_sections),createdAt,updatedAt,viewCount);
+    return Object.hash(runtimeType,id,title,summary,bannerImageUrl,const DeepCollectionEquality().hash(_category),editProtectionLevel,const DeepCollectionEquality().hash(_infoboxData),const DeepCollectionEquality().hash(_sections),isFeatured,isInTheNews,createdAt,updatedAt,viewCount);
 }
 
 @override
 String toString() {
-    return 'Article(id: $id, title: $title, summary: $summary, bannerImageUrl: $bannerImageUrl, category: $category, editProtectionLevel: $editProtectionLevel, infoboxData: $infoboxData, sections: $sections, createdAt: $createdAt, updatedAt: $updatedAt, viewCount: $viewCount)';
+    return 'Article(id: $id, title: $title, summary: $summary, bannerImageUrl: $bannerImageUrl, category: $category, editProtectionLevel: $editProtectionLevel, infoboxData: $infoboxData, sections: $sections, isFeatured: $isFeatured, isInTheNews: $isInTheNews, createdAt: $createdAt, updatedAt: $updatedAt, viewCount: $viewCount)';
 }
 
 
@@ -293,7 +297,7 @@ abstract mixin class _$ArticleCopyWith<$Res> implements $ArticleCopyWith<$Res> {
   factory _$ArticleCopyWith(_Article value, $Res Function(_Article) _then) = __$ArticleCopyWithImpl;
 @override @useResult
 $Res call({
- String id, String title, String summary, String bannerImageUrl, List<String> category, EditProtectionLevel editProtectionLevel, Map<String, dynamic> infoboxData, List<ArticleSection> sections, DateTime createdAt, DateTime updatedAt, int? viewCount
+ String id, String title, String summary, String bannerImageUrl, List<String> category, EditProtectionLevel editProtectionLevel, Map<String, dynamic> infoboxData, List<ArticleSection> sections, bool isFeatured, bool isInTheNews, DateTime createdAt, DateTime updatedAt, int? viewCount
 });
 
 
@@ -310,7 +314,7 @@ class __$ArticleCopyWithImpl<$Res>
 
 /// Create a copy of Article
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? summary = null,Object? bannerImageUrl = null,Object? category = null,Object? editProtectionLevel = null,Object? infoboxData = null,Object? sections = null,Object? createdAt = null,Object? updatedAt = null,Object? viewCount = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? summary = null,Object? bannerImageUrl = null,Object? category = null,Object? editProtectionLevel = null,Object? infoboxData = null,Object? sections = null,Object? isFeatured = null,Object? isInTheNews = null,Object? createdAt = null,Object? updatedAt = null,Object? viewCount = freezed,}) {
   return _then(_Article(
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
@@ -320,7 +324,9 @@ as String,category: null == category ? _self._category : category // ignore: cas
 as List<String>,editProtectionLevel: null == editProtectionLevel ? _self.editProtectionLevel : editProtectionLevel // ignore: cast_nullable_to_non_nullable
 as EditProtectionLevel,infoboxData: null == infoboxData ? _self._infoboxData : infoboxData // ignore: cast_nullable_to_non_nullable
 as Map<String, dynamic>,sections: null == sections ? _self._sections : sections // ignore: cast_nullable_to_non_nullable
-as List<ArticleSection>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as List<ArticleSection>,isFeatured: null == isFeatured ? _self.isFeatured : isFeatured // ignore: cast_nullable_to_non_nullable
+as bool,isInTheNews: null == isInTheNews ? _self.isInTheNews : isInTheNews // ignore: cast_nullable_to_non_nullable
+as bool,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
 as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,viewCount: freezed == viewCount ? _self.viewCount : viewCount // ignore: cast_nullable_to_non_nullable
 as int?,
