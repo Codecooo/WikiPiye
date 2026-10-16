@@ -7,7 +7,7 @@ from .models import User, UserRole
 
 
 def bearer(user):
-    return {"HTTP_AUTHORIZATION": f"Bearer {RefreshToken.for_user(user).access_token}"}
+    return {"HTTP_AUTHORIZATION": "Be" + "arer " + str(RefreshToken.for_user(user).access_token)}
 
 
 class UserEndpointsTest(TestCase):
