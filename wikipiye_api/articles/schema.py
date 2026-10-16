@@ -23,6 +23,8 @@ class ArticleOut(ModelSchema):
             "infobox_data",
             "created_at",
             "updated_at",
+            "is_featured",
+            "is_in_the_news",
         ]
 
 class ArticleIn(Schema):
@@ -31,6 +33,8 @@ class ArticleIn(Schema):
     banner_image_url: Optional[str] = None
     category: Optional[List[str]] = None
     infobox_data: Optional[dict] = None
+    is_featured: Optional[bool] = None
+    is_in_the_news: Optional[bool] = None
     sections: Optional[List[ArticleSectionIn]] = None
 
 class ArticleSectionIn(Schema):

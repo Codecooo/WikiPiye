@@ -18,6 +18,8 @@ class Article(models.Model):
     view_count = models.IntegerField(default=0)
     edit_protection_level = models.CharField(max_length=50, choices=EditProtectionLevel.choices, default=EditProtectionLevel.OPEN)
     infobox_data = models.JSONField(default=dict, blank=True)
+    is_featured = models.BooleanField(default=False)
+    is_in_the_news = models.BooleanField(default=False)
 
 class ArticleSection(models.Model):
     id = models.AutoField(primary_key=True)
