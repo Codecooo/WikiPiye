@@ -11,11 +11,11 @@ class Article(models.Model):
     id = models.AutoField(primary_key=True)
     title = models.CharField(max_length=255)
     summary = models.TextField()
-    banner_image_url = models.URLField(max_length=500, blank=True, null=True)
+    banner_image_url = models.URLField(max_length=10000, blank=True, null=True)
     category = ArrayField(models.CharField(max_length=100), blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    view_count = models.IntegerField(default=0)
+    view_count = models.BigIntegerField(default=0)
     edit_protection_level = models.CharField(max_length=50, choices=EditProtectionLevel.choices, default=EditProtectionLevel.OPEN)
     infobox_data = models.JSONField(default=dict, blank=True)
     is_featured = models.BooleanField(default=False)
@@ -23,7 +23,7 @@ class Article(models.Model):
 
 class ArticleSection(models.Model):
     id = models.AutoField(primary_key=True)
-    heading = models.CharField(max_length=10)
+    heading = models.TextField()
     level = models.IntegerField()
     content_delta = models.JSONField()
     article = models.ForeignKey(Article, related_name='sections', on_delete=models.CASCADE)
