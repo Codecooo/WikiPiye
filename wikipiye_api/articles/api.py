@@ -1,3 +1,4 @@
+from .services import chosen_facts_fyi
 from ninja import Router
 from django.shortcuts import get_object_or_404
 from django.db import transaction
@@ -124,3 +125,11 @@ def get_article(request, article_id: int):
     article.refresh_from_db(fields=['view_count'])
     
     return article
+
+
+@router.get("/fyi/facts", response=list[str])
+def get_random_facts(request):
+    """
+    Mengambil daftar 10 fakta acak untuk ditampilkan di halaman utama.
+    """
+    return chosen_facts_fyi()
