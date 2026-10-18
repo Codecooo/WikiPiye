@@ -1,8 +1,10 @@
+from django.db.models.functions import Lower
+
 from .services import chosen_facts_fyi
 from ninja import Router
 from django.shortcuts import get_object_or_404
 from django.db import transaction
-from django.db.models import F, Q
+from django.db.models import F, Q, Case, IntegerField, Value, When
 from ninja.errors import HttpError
 from ninja_jwt.authentication import JWTAuth
 from users.models import UserRole
@@ -18,22 +20,19 @@ def search_articles(request, query: str, limit: int = 10):
     if not query:
         return []
 
-    query_lower = query.lower()
-
-    candidate_articles = list(
-        Article.objects.filter(title__icontains=query)[:50]
+    return (
+        Article.objects.filter(title__icontains=query)
+        .annotate(
+            priority=Case(
+                When(title__iexact=query, then=Value(1)),      # Exact match
+                When(title__istartswith=query, then=Value(2)), # Prefix match
+                default=Value(3),                              # Substring match
+                output_field=IntegerField(),
+            ),
+            lower_title=Lower("title")
+        )
+        .order_by("priority", "lower_title")[:limit]
     )
-
-    def get_priority(article):
-        title_lower = article.title.lower()
-        if title_lower == query_lower:
-            return 1  # Exact match
-        elif title_lower.startswith(query_lower):
-            return 2  # Prefix match
-        return 3      # Contains match
-
-    candidate_articles.sort(key=lambda a: (get_priority(a), a.title))
-    return candidate_articles[:limit]
 
 
 @router.get("/featured-news", response=list[ArticleOut])
