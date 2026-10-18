@@ -22,7 +22,7 @@ API_DIR = ROOT / "wikipiye_api"
 APP_DIR = ROOT / "app"
 ENV_EXAMPLE = API_DIR / ".env.example"
 ENV_FILE = API_DIR / ".env"
-DUMP_FILE = API_DIR / "dump" / "wiki_articles.dump"
+DUMP_FILE = API_DIR / "dump" / "wikipiye_db.dump"
 DATABASE_NAME = "wikipiye"
 
 
