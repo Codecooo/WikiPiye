@@ -1,15 +1,16 @@
-from django.db.models.functions import Lower
-
-from .services import chosen_facts_fyi
-from ninja import Router
-from django.shortcuts import get_object_or_404
+from activity.models import ActivityType
 from django.db import transaction
-from django.db.models import F, Q, Case, IntegerField, Value, When
+from django.db.models import Case, F, IntegerField, Q, Value, When
+from django.db.models.functions import Lower
+from django.shortcuts import get_object_or_404
+from ninja import Router
 from ninja.errors import HttpError
 from ninja_jwt.authentication import JWTAuth
 from users.models import UserRole
+
 from .models import Article, ArticleEdit, ArticleSection, EditProtectionLevel
-from .schema import ArticleOut, ArticleCreateIn, ArticleUpdateIn, DetailArticleOut
+from .schema import ArticleCreateIn, ArticleOut, ArticleUpdateIn, DetailArticleOut
+from .services import add_history_activity, chosen_facts_fyi
 
 router = Router()
 
@@ -67,6 +68,8 @@ def create_article(request, payload: ArticleCreateIn):
     for sec in sections_data:
         ArticleSection.objects.create(article=article, **sec)
 
+    add_history_activity(request.auth, ActivityType.ARTICLE_CREATE, article=article)
+
     return get_object_or_404(Article.objects.prefetch_related('sections'), id=article.id)
 
 
@@ -101,6 +104,8 @@ def edit_article(request, article_id: int, payload: ArticleUpdateIn):
             edit_title=edit_title,
             edit_summary=edit_summary
         )
+
+        add_history_activity(request.auth, ActivityType.ARTICLE_EDIT, article=article)
     else:
         ArticleEdit.objects.create(
             article=article,
@@ -109,7 +114,7 @@ def edit_article(request, article_id: int, payload: ArticleUpdateIn):
             edit_title=edit_title,
             edit_summary=edit_summary
         )
-
+    
     return article
 
 
@@ -122,6 +127,7 @@ def get_article(request, article_id: int):
     
     Article.objects.filter(id=article_id).update(view_count=F('view_count') + 1)
     article.refresh_from_db(fields=['view_count'])
+    add_history_activity(request.auth, ActivityType.ARTICLE_VIEW , article=article)
     
     return article
 
