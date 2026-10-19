@@ -56,7 +56,7 @@ def require_postgres_command(command: str) -> str:
             r"C:\Program Files",
             r"C:\Program Files (x86)",
         }
-        for version in ("16", "17", "18"):
+        for version in ("14", "15", "16", "17", "18"):
             for directory in program_files:
                 if directory:
                     candidate = Path(directory) / "PostgreSQL" / version / "bin" / f"{command}.exe"
@@ -65,7 +65,7 @@ def require_postgres_command(command: str) -> str:
                         return str(candidate)
 
     fail(
-        f"Could not find '{command}' on PATH or in standard PostgreSQL 16, 17, or 18 "
+        f"Could not find '{command}' on PATH or in standard PostgreSQL 14, 15, 16, 17, or 18 "
         "installation directories. Install PostgreSQL client tools or add its bin "
         "directory to PATH."
     )

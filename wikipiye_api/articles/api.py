@@ -127,7 +127,10 @@ def get_article(request, article_id: int):
     
     Article.objects.filter(id=article_id).update(view_count=F('view_count') + 1)
     article.refresh_from_db(fields=['view_count'])
-    add_history_activity(request.auth, ActivityType.ARTICLE_VIEW , article=article)
+    
+
+    if (getattr(request, 'auth', None)):
+        add_history_activity(request.auth, ActivityType.ARTICLE_VIEW , article=article)
     
     return article
 
