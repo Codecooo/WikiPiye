@@ -1,4 +1,15 @@
-/// Class ini berisi dengan konfigurasi API yang digunakan dalam aplikasi. Semua properti yang ada di dalam class ini bersifat static, sehingga dapat diakses tanpa harus membuat instance dari class ini.
+import 'package:flutter/foundation.dart';
+
 class ApiConfig {
-  static const String baseUrl = 'http://localhost:8000/api';
+  static const String _desktopBaseUrl = 'http://127.0.0.1:8000/api';
+
+  static const String _androidEmulatorBaseUrl = 'http://10.0.2.2:8000/api';
+
+  static String get baseUrl {
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+      return _androidEmulatorBaseUrl;
+    }
+
+    return _desktopBaseUrl;
+  }
 }
