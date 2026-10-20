@@ -7,14 +7,24 @@ part of 'reading_list.dart';
 // **************************************************************************
 
 _ReadingList _$ReadingListFromJson(Map<String, dynamic> json) => _ReadingList(
-  userId: json['userId'] as String,
-  articleId: json['articleId'] as String,
+  id: json['id'] as String,
+  title: json['title'] as String,
+  description: json['description'] as String?,
+  articleIds:
+      (json['articleIds'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const [],
   createdAt: DateTime.parse(json['createdAt'] as String),
+  updatedAt: DateTime.parse(json['updatedAt'] as String),
 );
 
 Map<String, dynamic> _$ReadingListToJson(_ReadingList instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
-      'articleId': instance.articleId,
+      'id': instance.id,
+      'title': instance.title,
+      'description': instance.description,
+      'articleIds': instance.articleIds,
       'createdAt': instance.createdAt.toIso8601String(),
+      'updatedAt': instance.updatedAt.toIso8601String(),
     };

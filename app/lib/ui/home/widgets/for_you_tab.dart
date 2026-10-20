@@ -107,7 +107,7 @@ class _PlaceImage extends StatelessWidget {
         child: Image.network(
           url,
           fit: BoxFit.cover,
-          errorBuilder: (_, _, _) => Container(
+          errorBuilder: (_, __, ___) => Container(
             color: const Color(0xFFB7C8C1),
             child: const Icon(Icons.landscape, size: 48, color: Colors.white),
           ),

@@ -12,34 +12,39 @@ Tim kami beranggotakan 5 orang dalam menyusun aplikasi ini yaitu:
 ## Cara Menjalankan
 Syarat utama dalam menjalankan proyek ini adalah Flutter SDK, Python, PostgreSQL dan pip telah terinstall di PC masing-masing.
 
-Clone repository ini dengan menggunakan terminal atau di dalam VS Code
+1. Clone repository ini dengan menggunakan terminal atau di dalam VS Code
 ``` bash 
 git clone https://github.com/Codecooo/WikiPiye.git
 ```
+Cara muat data dump psql ARTIKEL DAN SECTIONS.
 
-### Setup otomatis (Windows, macOS, dan Linux)
+Keep in mind ini cuma untuk data ARTIKEL dan SECTIONS nya tidak mencakup seluruh tabel yang ada di database.
 
-Pastikan Python, Flutter, dan PostgreSQL sudah terpasang. PostgreSQL client tools
-(`pg_restore`) harus tersedia di `PATH`, atau terpasang pada lokasi standar
-Windows PostgreSQL versi 16, 17, atau 18. Dari direktori root repository, jalankan:
-
-```bash
-python setup_project.py
+1. Cara paling mudah dan cepat menggunakan pg_restore bawaan dari Postgres. Pastikan telah membuat database WikiPiye terlebih dahulu.
+* Terapkan migration terlebih dahulu
+``` bash
+python manage.py migrate
 ```
 
-Script ini akan membuat virtual environment `.venv`, memasang dependency API dan
-Flutter, meminta kredensial PostgreSQL, membuat database `wikipiye`, membuat
-`wikipiye_api/.env`, menjalankan migration, memuat
-`wikipiye_api/dump/wiki_articles.dump`, lalu menjalankan API dan Flutter.
-
-Untuk hanya menyiapkan project tanpa menjalankannya:
-
-```bash
-python setup_project.py --setup-only
+* Muat dump artikelnya.
+``` bash
+pg_restore -U username -h localhost -d wikipiye --clean -v wikipiye_api\dump\wiki_articles.dump
 ```
 
-Jika memiliki beberapa perangkat Flutter, tentukan perangkat yang digunakan:
+* Kalau pg_restore not found pake manual:
+``` shell
+"C:\Program Files\PostgreSQL\16\bin\pg_restore.exe" -U username -h localhost -d wikipiye --clean -v wikipiye_api\dump\wiki_articles.dump
+```
 
-```bash
-python setup_project.py --device-id <device-id>
+2. Menggunakan script Python
+Cara ini gk direkomendasikan SOALE LAMA POL kalau lebih dari seribu artikel. Enggak tahu apa emg internet ku atau laptop ku emg lemot tapi tak peringatin cara ini lama. Ini command untuk seed data artikel langsung dari Wikipedia. Pastikan direktori CMD berada di wikipiye_api. Dan pastikan sudah membuat database wikipiye.
+
+* Terapkan migration terlebih dahulu
+``` bash
+python manage.py migrate
+```
+
+* Jalankan command seed artikel
+``` bash
+python manage.py seed_articles --limit 5000 # Atur sesuai kemampuan kalau ingin cepat cukup ratusan saja
 ```
