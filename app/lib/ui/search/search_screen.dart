@@ -1,27 +1,82 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
+import 'widgets/search_field.dart';
+import 'widgets/search_results.dart';
+import 'widgets/trending_articles.dart';
+
+/// Tab "Cari". State di sini hanya teks kolom & debounce (state UI lokal);
+/// data hasil pencarian diambil oleh provider di `search_viewmodel.dart`.
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
+
   @override
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  static const _debounceDuration = Duration(milliseconds: 350);
+
   final _controller = TextEditingController();
-  final _articles = const ['Indonesia', 'Wikipedia', 'Surabaya', 'Kecerdasan buatan', 'Sejarah dunia', 'Sistem informasi'];
+  Timer? _debounce;
   String _query = '';
+
   @override
-  void dispose() { _controller.dispose(); super.dispose(); }
+  void dispose() {
+    _debounce?.cancel();
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _onChanged(String value) {
+    _debounce?.cancel();
+    _debounce = Timer(_debounceDuration, () => _setQuery(value));
+  }
+
+  void _onSubmitted(String value) {
+    _debounce?.cancel();
+    _setQuery(value);
+  }
+
+  void _clear() {
+    _debounce?.cancel();
+    _controller.clear();
+    _setQuery('');
+  }
+
+  void _setQuery(String value) {
+    final trimmed = value.trim();
+    if (!mounted || trimmed == _query) return;
+    setState(() => _query = trimmed);
+  }
+
   @override
   Widget build(BuildContext context) {
-    final results = _articles.where((e) => e.toLowerCase().contains(_query.toLowerCase())).toList();
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(title: const Text('Cari', style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600)), automaticallyImplyLeading: false),
-      body: Column(children: [
-        Padding(padding: const EdgeInsets.fromLTRB(16, 8, 16, 12), child: TextField(controller: _controller, onChanged: (value) => setState(() => _query = value), decoration: InputDecoration(hintText: 'Cari di WikiiPiye', prefixIcon: const Icon(Icons.search), suffixIcon: _query.isEmpty ? null : IconButton(onPressed: () { _controller.clear(); setState(() => _query = ''); }, icon: const Icon(Icons.close)), filled: true, fillColor: const Color(0xFFF8F9FA), border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Color(0xFF72777D))), contentPadding: const EdgeInsets.symmetric(vertical: 12)))),
-        Expanded(child: ListView(children: results.map((title) => ListTile(leading: const Icon(Icons.article_outlined, color: Color(0xFF54595D)), title: Text(title), subtitle: const Text('Artikel ensiklopedia'), trailing: const Icon(Icons.chevron_right), onTap: () {})).toList())),
-      ]),
+      appBar: AppBar(
+        title: const Text(
+          'Cari',
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+        ),
+        automaticallyImplyLeading: false,
+      ),
+      body: Column(
+        children: [
+          SearchField(
+            controller: _controller,
+            onChanged: _onChanged,
+            onSubmitted: _onSubmitted,
+            onClear: _clear,
+          ),
+          Expanded(
+            child: _query.isEmpty
+                ? const TrendingArticles()
+                : SearchResults(query: _query),
+          ),
+        ],
+      ),
     );
   }
 }
