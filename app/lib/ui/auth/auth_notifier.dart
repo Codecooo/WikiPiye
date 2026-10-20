@@ -1,4 +1,4 @@
-﻿import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:wikipiye/models/dto/dto.dart';
 import 'package:wikipiye/repositories/auth_repository.dart';
 import 'package:wikipiye/services/api_service.dart';
@@ -45,12 +45,10 @@ class AuthNotifier extends _$AuthNotifier {
   // ── Pengecekan Sesi ──────────────────────────────────────────────────────
 
   Future<void> _checkActiveSession() async {
-    final hasSession = await _authRepository.hasActiveSession();
-    if (!hasSession) {
-      state = const AuthStateUnauthenticated();
+    final user = await _authRepository.getStoredUser();
+    if (user != null) {
+      state = AuthStateAuthenticated(user);
     } else {
-      // Token ada tapi kita tidak re-fetch profil agar efisien.
-      // Biarkan halaman yang membutuhkan user data melakukan fetch sendiri.
       state = const AuthStateUnauthenticated();
     }
   }

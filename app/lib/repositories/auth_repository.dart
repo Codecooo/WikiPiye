@@ -1,4 +1,5 @@
-﻿import 'package:dio/dio.dart';
+import 'dart:convert';
+import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:wikipiye/models/dto/dto.dart';
 import 'package:wikipiye/services/api_service.dart';
@@ -37,6 +38,10 @@ class AuthRepository {
         key: ApiConfig.refreshTokenKey,
         value: authResponse.refreshToken,
       );
+      await _storage.write(
+        key: 'auth_user_data',
+        value: jsonEncode(authResponse.user.toJson()),
+      );
 
       return authResponse.user;
     } on DioException catch (e) {
@@ -71,6 +76,7 @@ class AuthRepository {
   Future<void> logout() async {
     await _storage.delete(key: ApiConfig.tokenKey);
     await _storage.delete(key: ApiConfig.refreshTokenKey);
+    await _storage.delete(key: 'auth_user_data');
   }
 
   // ── Sesi Aktif ─────────────────────────────────────────────────────────────
@@ -79,6 +85,20 @@ class AuthRepository {
   Future<bool> hasActiveSession() async {
     final token = await _storage.read(key: ApiConfig.tokenKey);
     return token != null && token.isNotEmpty;
+  }
+
+  /// Mengambil data user yang tersimpan di Secure Storage jika ada.
+  Future<AuthUserDTO?> getStoredUser() async {
+    final token = await _storage.read(key: ApiConfig.tokenKey);
+    final userJson = await _storage.read(key: 'auth_user_data');
+    if (token != null && token.isNotEmpty && userJson != null) {
+      try {
+        return AuthUserDTO.fromJson(
+          jsonDecode(userJson) as Map<String, dynamic>,
+        );
+      } catch (_) {}
+    }
+    return null;
   }
 
   // ── Helper ─────────────────────────────────────────────────────────────────

@@ -8,8 +8,6 @@ import 'package:wikipiye/repositories/article_repository.dart';
 import 'package:wikipiye/repositories/auth_repository.dart';
 import 'package:wikipiye/repositories/saved_repository.dart';
 import 'package:wikipiye/services/api_service.dart';
-import 'package:wikipiye/ui/auth/auth_notifier.dart';
-import 'package:wikipiye/ui/auth/login_screen.dart';
 
 import 'ui/home/home_screen.dart';
 
@@ -53,28 +51,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF366B4D)),
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const _AuthGate(),
-    );
-  }
-}
-
-/// Widget penjaga autentikasi.
-/// Menampilkan [LoginScreen] jika belum login, [HomeScreen] jika sudah.
-class _AuthGate extends ConsumerWidget {
-  const _AuthGate();
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authProvider);
-
-    if (authState is AuthStateAuthenticated) {
-      return const HomeScreen();
-    } else if (authState is AuthStateUnauthenticated) {
-      return const LoginScreen();
-    }
-    // AuthStateUnknown — menunggu pengecekan sesi
-    return const Scaffold(
-      body: Center(child: CircularProgressIndicator()),
+      home: const HomeScreen(),
     );
   }
 }
