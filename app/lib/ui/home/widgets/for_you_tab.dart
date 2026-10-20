@@ -13,7 +13,7 @@ class ForYouTab extends StatelessWidget {
           const _PlacesMosaic(),
           const SizedBox(height: 24),
           const Text(
-            'Stories from places you love',
+            'Cerita dari tempat yang Anda kunjungi',
             style: TextStyle(
               fontFamily: 'Georgia',
               fontSize: 27,
@@ -24,7 +24,7 @@ class ForYouTab extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           const Text(
-            'Articles will appear based on your last viewed place. Visit the Places tab and select a location.',
+            'Artikel akan muncul berdasarkan tempat terakhir yang Anda kunjungi. Kunjungi tab Tempat dan pilih lokasi.',
             style: TextStyle(fontSize: 15, height: 1.5, color: Colors.white),
           ),
           const SizedBox(height: 28),
@@ -107,7 +107,7 @@ class _PlaceImage extends StatelessWidget {
         child: Image.network(
           url,
           fit: BoxFit.cover,
-          errorBuilder: (_, _, _) => Container(
+          errorBuilder: (_, __, ___) => Container(
             color: const Color(0xFFB7C8C1),
             child: const Icon(Icons.landscape, size: 48, color: Colors.white),
           ),

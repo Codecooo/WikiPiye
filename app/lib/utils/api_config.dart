@@ -7,4 +7,13 @@ class ApiConfig {
       'auth_token'; // Kunci untuk menyimpan access token di Secure Storage
   static const String refreshTokenKey =
       'auth_refresh_token'; // Kunci untuk menyimpan refresh token di Secure Storage
+
+  static Uri communityUrl({int limit = 5}) {
+    final base = baseUrl.endsWith('/')
+        ? baseUrl.substring(0, baseUrl.length - 1)
+        : baseUrl;
+
+    return Uri.parse('$base/community/')
+        .replace(queryParameters: {'limit': '$limit'});
+  }
 }
