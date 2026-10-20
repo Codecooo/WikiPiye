@@ -4,10 +4,10 @@ WikiPiye adalah aplikasi clone dari Wikipedia dalam Flutter menggunakan custom A
 ## Tim
 Tim kami beranggotakan 5 orang dalam menyusun aplikasi ini yaitu:
 1. Anugerah Tallenta Agung (24051214132)
-2. Mutiah
-3. Sayyidina Aldhito
-4. Rafinara Ardhani
-5. Yolanda
+2. Mutiah (24051214118)
+3. Sayyidina Aldhito (24051214139)
+4. Rafinara Ardhani (24051214112)
+5. Yolanda (24051214111)
 
 ## Cara Menjalankan
 Syarat utama dalam menjalankan proyek ini adalah Flutter SDK, Python, PostgreSQL dan pip telah terinstall di PC masing-masing.
