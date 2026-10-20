@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wikipiye/ui/activity/viewmodels/activity_viewmodel.dart';
 
 /// Tab Aktivitas (berdiri sendiri, tidak butuh file lain).
-class ActivityScreen extends StatelessWidget {
+class ActivityScreen extends ConsumerWidget {
   const ActivityScreen({super.key, this.username = 'User123'});
 
   /// Nama pengguna yang ditampilkan di bagian atas.
@@ -18,7 +20,9 @@ class ActivityScreen extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final activities = ref.watch(activityViewmodelProvider);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
