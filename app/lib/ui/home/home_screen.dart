@@ -99,7 +99,7 @@ class _WikiHeader extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Wikipedia',
+                'Wikipiye',
                 style: TextStyle(
                   fontFamily: 'Georgia',
                   fontSize: 31,

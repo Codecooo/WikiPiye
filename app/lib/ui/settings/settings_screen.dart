@@ -43,7 +43,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ValueListenableBuilder<List<WikiLanguage>>(
             valueListenable: selectedLanguages,
             builder: (context, langs, _) => ListTile(
-              title: const Text('Bahasa Wikipedia'),
+              title: const Text('Bahasa Wikipiye'),
               subtitle: Text(langs.map((l) => l.name).join(', ')),
               onTap: () {
                 Navigator.push(
@@ -87,7 +87,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ListTile(
             title: const Text('Discover collection'),
             subtitle: const Text(
-              "Discover is off. Wikipedia won't recommend you articles to read.",
+              "Discover is off. Wikipiye won't recommend you articles to read.",
             ),
             onTap: _soon,
           ),
@@ -138,7 +138,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
           _section('Tentang'),
           ListTile(
-            title: const Text('Tentang aplikasi WikiiPiye'),
+            title: const Text('Tentang aplikasi WikiPiye'),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const AboutScreen()),
