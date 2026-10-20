@@ -1,5 +1,5 @@
 # WikiPiye
-WikiPiye adalah aplikasi clone dari Wikipedia dalam Flutter menggunakan custom API. Fiturnya meliputi membaca artikel, edit artikel, membuat artikel, dan histori artikel.
+WikiPiye adalah aplikasi clone dari Wikipedia dalam Flutter menggunakan custom API. Fiturnya meliputi membaca artikel dan histori artikel.
 
 ## Tim
 Tim kami beranggotakan 5 orang dalam menyusun aplikasi ini yaitu:
