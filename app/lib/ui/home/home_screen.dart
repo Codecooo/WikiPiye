@@ -99,36 +99,53 @@ class _WikiHeader extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Wikipedia',
+                'WikiPiye',
                 style: TextStyle(
                   fontFamily: 'Georgia',
+
                   fontSize: 31,
+
                   letterSpacing: -1.2,
+
                   color: foreground,
+
                   fontWeight: FontWeight.w400,
                 ),
               ),
             ),
+
             Stack(
               clipBehavior: Clip.none,
+
               children: [
                 Icon(Icons.notifications_none, size: 30, color: foreground),
+
                 Positioned(
                   right: -8,
+
                   top: -8,
+
                   child: Container(
                     width: 25,
+
                     height: 25,
+
                     alignment: Alignment.center,
+
                     decoration: const BoxDecoration(
                       color: Color(0xFFB32424),
+
                       shape: BoxShape.circle,
                     ),
+
                     child: const Text(
                       '1',
+
                       style: TextStyle(
                         color: Colors.white,
+
                         fontSize: 14,
+
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -163,28 +180,43 @@ class _HomeTabs extends StatelessWidget {
         children: [
           _TabLabel(
             label: 'Community',
+
             selected: selectedTab == 0,
+
             dark: dark,
+
             onTap: () => onChanged(0),
           ),
+
           const SizedBox(width: 26),
+
           _TabLabel(
             label: 'For you',
+
             selected: selectedTab == 1,
+
             dark: dark,
+
             onTap: () => onChanged(1),
           ),
+
           const Spacer(),
+
           Container(
             height: 34,
+
             padding: const EdgeInsets.symmetric(horizontal: 5),
+
             decoration: BoxDecoration(
               border: Border.all(
                 color: dark ? const Color(0xFF9DB2AD) : const Color(0xFF72777D),
+
                 width: 1.5,
               ),
+
               borderRadius: BorderRadius.circular(11),
             ),
+
             child: Row(
               children: [
                 Container(
