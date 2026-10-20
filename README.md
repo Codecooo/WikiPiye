@@ -6,7 +6,7 @@ Tim kami beranggotakan 5 orang dalam menyusun aplikasi ini yaitu:
 1. Anugerah Tallenta Agung (24051214132)
 2. Mutiah
 3. Sayyidina Aldhito
-4. Rafinara Ardhani
+4. Rafinara Ardhani Abhinaya (24051214112)
 5. Yolanda
 
 ## Cara Menjalankan
