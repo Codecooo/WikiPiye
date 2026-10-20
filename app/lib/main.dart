@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:wikipiye/repositories/article_repository.dart';
+import 'package:wikipiye/repositories/auth_repository.dart';
 import 'package:wikipiye/repositories/saved_repository.dart';
 import 'package:wikipiye/services/api_service.dart';
 
@@ -31,6 +32,7 @@ void _registerServices() {
   getIt.registerSingleton(ApiService());
   getIt.registerSingleton(ArticleRepository(getIt<ApiService>()));
   getIt.registerSingleton(SavedRepository(getIt<ApiService>()));
+  getIt.registerSingleton(AuthRepository(getIt<ApiService>()));
 }
 
 class MyApp extends StatelessWidget {
