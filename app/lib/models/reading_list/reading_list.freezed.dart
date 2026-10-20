@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ReadingList {
 
- String get userId; String get articleId; DateTime get createdAt;
+ String get id; String get title; String? get description; List<String> get articleIds; DateTime get createdAt; DateTime get updatedAt;
 /// Create a copy of ReadingList
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -30,20 +30,20 @@ $ReadingListCopyWith<ReadingList> get copyWith => _$ReadingListCopyWithImpl<Read
 @override
 bool operator ==(Object other) {
   final _this = this as ReadingList;
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReadingList&&(identical(other.userId, _this.userId) || other.userId == _this.userId)&&(identical(other.articleId, _this.articleId) || other.articleId == _this.articleId)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ReadingList&&(identical(other.id, _this.id) || other.id == _this.id)&&(identical(other.title, _this.title) || other.title == _this.title)&&(identical(other.description, _this.description) || other.description == _this.description)&&const DeepCollectionEquality().equals(other.articleIds, _this.articleIds)&&(identical(other.createdAt, _this.createdAt) || other.createdAt == _this.createdAt)&&(identical(other.updatedAt, _this.updatedAt) || other.updatedAt == _this.updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
   final _this = this as ReadingList;
-  return Object.hash(runtimeType,_this.userId,_this.articleId,_this.createdAt);
+  return Object.hash(runtimeType,_this.id,_this.title,_this.description,const DeepCollectionEquality().hash(_this.articleIds),_this.createdAt,_this.updatedAt);
 }
 
 @override
 String toString() {
   final _this = this as ReadingList;
-  return 'ReadingList(userId: ${_this.userId}, articleId: ${_this.articleId}, createdAt: ${_this.createdAt})';
+  return 'ReadingList(id: ${_this.id}, title: ${_this.title}, description: ${_this.description}, articleIds: ${_this.articleIds}, createdAt: ${_this.createdAt}, updatedAt: ${_this.updatedAt})';
 }
 
 
@@ -54,7 +54,7 @@ abstract mixin class $ReadingListCopyWith<$Res>  {
   factory $ReadingListCopyWith(ReadingList value, $Res Function(ReadingList) _then) = _$ReadingListCopyWithImpl;
 @useResult
 $Res call({
- String userId, String articleId, DateTime createdAt
+ String id, String title, String? description, List<String> articleIds, DateTime createdAt, DateTime updatedAt
 });
 
 
@@ -71,11 +71,14 @@ class _$ReadingListCopyWithImpl<$Res>
 
 /// Create a copy of ReadingList
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? userId = null,Object? articleId = null,Object? createdAt = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? articleIds = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(ReadingList(
-userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,articleId: null == articleId ? _self.articleId : articleId // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,articleIds: null == articleIds ? _self.articleIds : articleIds // ignore: cast_nullable_to_non_nullable
+as List<String>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }
@@ -161,10 +164,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String userId,  String articleId,  DateTime createdAt)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  String title,  String? description,  List<String> articleIds,  DateTime createdAt,  DateTime updatedAt)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ReadingList() when $default != null:
-return $default(_that.userId,_that.articleId,_that.createdAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.articleIds,_that.createdAt,_that.updatedAt);case _:
   return orElse();
 
 }
@@ -182,10 +185,10 @@ return $default(_that.userId,_that.articleId,_that.createdAt);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String userId,  String articleId,  DateTime createdAt)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  String title,  String? description,  List<String> articleIds,  DateTime createdAt,  DateTime updatedAt)  $default,) {final _that = this;
 switch (_that) {
 case _ReadingList():
-return $default(_that.userId,_that.articleId,_that.createdAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.articleIds,_that.createdAt,_that.updatedAt);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -202,10 +205,10 @@ return $default(_that.userId,_that.articleId,_that.createdAt);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String userId,  String articleId,  DateTime createdAt)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  String title,  String? description,  List<String> articleIds,  DateTime createdAt,  DateTime updatedAt)?  $default,) {final _that = this;
 switch (_that) {
 case _ReadingList() when $default != null:
-return $default(_that.userId,_that.articleId,_that.createdAt);case _:
+return $default(_that.id,_that.title,_that.description,_that.articleIds,_that.createdAt,_that.updatedAt);case _:
   return null;
 
 }
@@ -217,12 +220,21 @@ return $default(_that.userId,_that.articleId,_that.createdAt);case _:
 @JsonSerializable()
 
 class _ReadingList implements ReadingList {
-  const _ReadingList({required this.userId, required this.articleId, required this.createdAt});
+  const _ReadingList({required this.id, required this.title, this.description,  List<String> articleIds = const [], required this.createdAt, required this.updatedAt}): _articleIds = articleIds;
   factory _ReadingList.fromJson(Map<String, dynamic> json) => _$ReadingListFromJson(json);
 
-@override final  String userId;
-@override final  String articleId;
+@override final  String id;
+@override final  String title;
+@override final  String? description;
+ final  List<String> _articleIds;
+@override@JsonKey() List<String> get articleIds {
+  if (_articleIds is EqualUnmodifiableListView) return _articleIds;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_articleIds);
+}
+
 @override final  DateTime createdAt;
+@override final  DateTime updatedAt;
 
 /// Create a copy of ReadingList
 /// with the given fields replaced by the non-null parameter values.
@@ -237,18 +249,18 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReadingList&&(identical(other.userId, userId) || other.userId == userId)&&(identical(other.articleId, articleId) || other.articleId == articleId)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt));
+    return identical(this, other) || (other.runtimeType == runtimeType&&other is _ReadingList&&(identical(other.id, id) || other.id == id)&&(identical(other.title, title) || other.title == title)&&(identical(other.description, description) || other.description == description)&&const DeepCollectionEquality().equals(other.articleIds, _articleIds)&&(identical(other.createdAt, createdAt) || other.createdAt == createdAt)&&(identical(other.updatedAt, updatedAt) || other.updatedAt == updatedAt));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode {
-    return Object.hash(runtimeType,userId,articleId,createdAt);
+    return Object.hash(runtimeType,id,title,description,const DeepCollectionEquality().hash(_articleIds),createdAt,updatedAt);
 }
 
 @override
 String toString() {
-    return 'ReadingList(userId: $userId, articleId: $articleId, createdAt: $createdAt)';
+    return 'ReadingList(id: $id, title: $title, description: $description, articleIds: $articleIds, createdAt: $createdAt, updatedAt: $updatedAt)';
 }
 
 
@@ -259,7 +271,7 @@ abstract mixin class _$ReadingListCopyWith<$Res> implements $ReadingListCopyWith
   factory _$ReadingListCopyWith(_ReadingList value, $Res Function(_ReadingList) _then) = __$ReadingListCopyWithImpl;
 @override @useResult
 $Res call({
- String userId, String articleId, DateTime createdAt
+ String id, String title, String? description, List<String> articleIds, DateTime createdAt, DateTime updatedAt
 });
 
 
@@ -276,11 +288,14 @@ class __$ReadingListCopyWithImpl<$Res>
 
 /// Create a copy of ReadingList
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? userId = null,Object? articleId = null,Object? createdAt = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? description = freezed,Object? articleIds = null,Object? createdAt = null,Object? updatedAt = null,}) {
   return _then(_ReadingList(
-userId: null == userId ? _self.userId : userId // ignore: cast_nullable_to_non_nullable
-as String,articleId: null == articleId ? _self.articleId : articleId // ignore: cast_nullable_to_non_nullable
-as String,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,description: freezed == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
+as String?,articleIds: null == articleIds ? _self._articleIds : articleIds // ignore: cast_nullable_to_non_nullable
+as List<String>,createdAt: null == createdAt ? _self.createdAt : createdAt // ignore: cast_nullable_to_non_nullable
+as DateTime,updatedAt: null == updatedAt ? _self.updatedAt : updatedAt // ignore: cast_nullable_to_non_nullable
 as DateTime,
   ));
 }

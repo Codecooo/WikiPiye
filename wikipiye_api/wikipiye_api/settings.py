@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'reading_lists',
     'activity',
     'feed',
-    'corsheaders'
 ]
 
 AUTH_USER_MODEL = "users.User"
@@ -55,7 +54,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'wikipiye_api.urls'
@@ -132,6 +130,3 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
-
-if DEBUG:
-    CORS_ALLOW_ALL_ORIGINS = True

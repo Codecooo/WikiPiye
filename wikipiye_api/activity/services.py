@@ -1,11 +1,10 @@
-from ninja.errors import HttpError
-
-from activity.models import ActivityHistory
+from articles.models import ArticleEdit
 
 
 def get_user_activity(user):
     # Hanya suntingan milik user itu sendiri; terbaru lebih dulu
-    activities = ActivityHistory.objects.filter(user=user).order_by('-timestamp', 'id')
-    if not activities.exists():
-        raise HttpError(404, "Tidak ada aktivitas yang ditemukan untuk pengguna ini.")
-    return activities
+    return (
+        ArticleEdit.objects.filter(editor=user)
+        .select_related("article")
+        .order_by("-edited_at", "-id")
+    )
